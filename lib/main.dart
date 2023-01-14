@@ -91,7 +91,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
             tooltip: 'decrement',
@@ -101,6 +101,9 @@ class MyHomePage extends StatelessWidget {
             },
             child: Icon(Icons.remove),
           ),
+          SizedBox(
+            width: 40,
+          ),  
           FloatingActionButton(
             onPressed: () {
               context.read<CounterBloc>().add(Increment());

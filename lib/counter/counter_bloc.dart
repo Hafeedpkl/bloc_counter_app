@@ -1,20 +1,19 @@
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'counter_event.dart';
 part 'counter_state.dart';
+part 'counter_bloc.freezed.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  CounterBloc() : super(InitialState()) {
+  CounterBloc() : super(CounterState.initial()) {
     on<Increment>((event, emit) {
-      final currentstateValue = state.count;
-      final incerementedValue = currentstateValue + 1;
-      return emit(CounterState(count: incerementedValue));
+      return emit(state.copyWith(count: state.count + 1));
     });
     on<Decrement>((event, emit) {
-      final currentstateValue = state.count;
-      final incerementedValue = currentstateValue - 1;
-      return emit(CounterState(count: incerementedValue));
+      final newState = state.copyWith(count: state.count - 1);
+      return emit(newState);
     });
   }
 }
